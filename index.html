@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Kanavan! 🥳</title>
+  <style>
+    /* --- General Styling --- */
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #fce4ec;
+      text-align: center;
+      color: #333;
+      overflow: hidden;
+    }
+    .page-container {
+      width: 100%;
+      padding: 0;
+      background-color: transparent;
+      box-shadow: none;
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .page {
+      display: none;
+      width: 90%;
+      max-width: 600px;
+      padding: 40px 20px;
+      background-color: transparent;
+      box-shadow: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 40vh;
+    }
+
+    h1, h2 { color: #ff69b4; margin-bottom: 15px; }
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2.2em; }
+    p {
+      font-size: 1.6em;
+      line-height: 1.6;
+      margin: 10px 0;
+      font-weight: bold;
+      color: #ff69b4;
+    }
+
+    /* --- Buttons --- */
+    button {
+      padding: 10px 25px;
+      margin: 10px 0;
+      font-size: 1.1em;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: background-color 0.3s ease, transform 0.1s;
+    }
+    button:active { transform: scale(0.98); }
+    #start-button {
+      background-color: #ff69b4;
+      color: white;
+      font-weight: bold;
+      padding: 15px 40px;
+      font-size: 1.5em;
+      margin-top: 30px;
+    }
+    .option-button, .gift-button {
+      background-color: #ffe0f0;
+      color: #ff69b4;
+      border: 2px solid #ff69b4;
+      font-weight: bold;
+      display: block;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    /* --- Pop-up Text Animation --- */
+    #page1 h1, #page2 p, #page3 h2 {
+      animation: popUp 0.5s ease-out;
+      position: relative;
+      z-index: 10;
+    }
+    @keyframes popUp {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* --- Page 4 --- */
+    #page4 {
+      width: 100%;
+      height: 100vh;
+      padding: 0;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      flex-direction: column;
+      position: relative;
+    }
+    #page4 img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 10px;
+      animation: bounceIn 1s ease;
+    }
+    #page4-instruction-text {
+      color: #333;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+      position: absolute;
+      bottom: 10%;
+      z-index: 20;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    /* --- Page 5 --- */
+    #page5 h2 {
+      color: #ff69b4;
+      font-size: 2em;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease;
+    }
+    #letter-img {
+      max-width: 100%;
+      max-height: 60vh;
+      height: auto;
+      width: auto;
+      border: 5px solid #ffc2e0;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      animation: fadeIn 1.5s ease;
+    }
+    #proceed-button {
+      animation: popUp 0.8s ease;
+    }
+
+    /* --- Page 6 & 7 Buttons Animation --- */
+    #page6 h2, #page7 h2 {
+      animation: fadeInDown 1s ease;
+    }
+    #page6 button, #page7 button {
+      opacity: 0;
+      animation: popIn 0.7s ease forwards;
+    }
+    #page6 button:nth-child(2) { animation-delay: 0.3s; }
+    #page6 button:nth-child(3) { animation-delay: 0.6s; }
+    #page7 button:nth-child(2) { animation-delay: 0.2s; }
+    #page7 button:nth-child(3) { animation-delay: 0.4s; }
+    #page7 button:nth-child(4) { animation-delay: 0.6s; }
+    #page7 button:nth-child(5) { animation-delay: 0.8s; }
+
+    /* --- Final Page --- */
+    #page8 h1 { animation: pulse 1s infinite alternate; }
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    /* --- Animation Keyframes --- */
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* --- Background Emoji Animation --- */
+    .background-flow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+      display: none;
+    }
+    .emoji {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0;
+      animation: flowUp linear infinite;
+    }
+    .heart-flow .emoji {
+      color: #ff69b4;
+      animation-duration: 8s;
+      text-shadow: 0 0 5px #ff00ff;
+    }
+    .animal-flow .emoji {
+      animation-duration: 12s;
+    }
+    @keyframes flowUp {
+      0% { transform: translate(0, 100vh) scale(0); opacity: 0; }
+      10% { opacity: 1; transform: translate(0, 90vh) scale(1); }
+      80% { opacity: 0.8; }
+      100% { transform: translate(0, -10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="bg-hearts" class="background-flow heart-flow"></div>
+<div id="bg-animals" class="background-flow animal-flow"></div>
+
+<div class="page-container">
+  <div id="page0" class="page">
+    <p style="font-size: 1.5em; color: #ff69b4;">I made this web page myself (Ai help) hope u like it 👉🏻👈🏻</p>
+    <button id="start-button" onclick="showPage(1)">Press to Start</button>
+  </div>
+
+  <div id="page1" class="page">
+    <h1>A VERY HAPPY BIRTHDAY KANAVAN!!!</h1>
+  </div>
+
+  <div id="page2" class="page">
+    <p>We met when you were 20 and now you are 22! You have become my big baby now...hehe</p>
+  </div>
+
+  <div id="page3" class="page">
+    <h2>I have something for you, since efforts >>>> results</h2>
+    <button class="option-button" onclick="showPage(4)">Click to see</button>
+  </div>
+
+  <div id="page4" class="page" onclick="showPage(5)">
+    <img src="./box.jpeg" alt="Tap to open">
+    <span id="page4-instruction-text">Tap to open</span>
+  </div>
+
+  <div id="page5" class="page">
+    <h2>Handwritten letter for cutie</h2>
+    <img id="letter-img" src="./letter.jpeg" alt="Handwritten birthday letter">
+    <button id="proceed-button" class="option-button" onclick="showPage(6)">Proceed after reading is done</button>
+  </div>
+
+  <div id="page6" class="page">
+    <h2>Ready for your gift?</h2>
+    <button class="option-button" onclick="showPage(7)">Yes</button>
+    <button class="option-button" onclick="showPage(7)">Ama</button>
+  </div>
+
+  <div id="page7" class="page">
+    <h2>Which one do u want as a gift?</h2>
+    <button class="gift-button" onclick="selectGift('T-shirt or Shirts')">A. T-shirt or Shirts</button>
+    <button class="gift-button" onclick="selectGift('Car dashboard showpiece')">B. Car dashboard showpiece</button>
+    <button class="gift-button" onclick="selectGift('A New Chain to ur collection')">C. A New Chain to ur collection</button>
+    <button class="gift-button" onclick="selectGift('Creatine / chocolate oats / herbal tea')">D. Creatine / chocolate oats / herbal tea</button>
+  </div>
+
+  <div id="page8" class="page">
+    <h2>Great choice just like you...</h2>
+    <h1>Once again happy birthday my love💕</h1>
+    <p style="margin-top: 30px; font-size: 0.9em;">(The End! say me how was it!)</p>
+  </div>
+</div>
+
+<script>
+  const FLOW_ELEMENTS = {
+    hearts: { container: 'bg-hearts', emojis: ['💖', '💋', '❤️', '💕', '✨'] },
+    animals: { container: 'bg-animals', emojis: ['🐻', '🐰', '💕'] }
+  };
+
+  function showPage(num) {
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    const target = document.getElementById('page' + num);
+    if (target) {
+      target.style.display = 'flex';
+      stopBackgroundFlow();
+
+      if (num === 1) {
+        startBackgroundFlow(FLOW_ELEMENTS.hearts);
+        setTimeout(() => showPage(2), 3000);
+      } else if (num === 2) {
+        startBackgroundFlow(FLOW_ELEMENTS.animals);
+        setTimeout(() => showPage(3), 4500);
+      } else if (num === 8) {
+        startBackgroundFlow(FLOW_ELEMENTS.hearts);
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => showPage(0));
+
+  let flowInterval;
+  function startBackgroundFlow(cfg) {
+    const c = document.getElementById(cfg.container);
+    c.style.display = 'block';
+    c.innerHTML = '';
+    const createEmoji = () => {
+      const e = document.createElement('div');
+      e.classList.add('emoji');
+      e.textContent = cfg.emojis[Math.floor(Math.random() * cfg.emojis.length)];
+      e.style.left = `${Math.random() * 95}%`;
+      e.style.animationDelay = `-${Math.random() * 15}s`;
+      c.appendChild(e);
+      e.addEventListener('animationend', () => e.remove());
+    };
+    flowInterval = setInterval(createEmoji, 500);
+  }
+
+  function stopBackgroundFlow() {
+    clearInterval(flowInterval);
+    document.querySelectorAll('.background-flow').forEach(f => {
+      f.style.display = 'none';
+      f.innerHTML = '';
+    });
+  }
+
+  // ✅ Save gift choice to your Node.js server
+  function selectGift(option) {
+    fetch('/save-choice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ choice: option })
+    })
+    .then(() => {
+      showPage(8);
+    })
+    .catch(err => alert('Failed to save choice: ' + err.message));
+  }
+</script>
+
+</body>
+</html>
