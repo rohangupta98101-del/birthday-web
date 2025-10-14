@@ -21,4 +21,15 @@ app.post("/save-choice", (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🎉 Server running at http://localhost:${PORT}`);
+  app.get("/choices", (req, res) => {
+    const file = path.join(__dirname, "choices.txt");
+    if (fs.existsSync(file)) {
+      const data = fs.readFileSync(file, "utf-8");
+      res.type("text/plain").send(data);
+    } else {
+      res.send("No choices yet.");
+    }
+  });
+  
 });
+
