@@ -3,33 +3,33 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static(__dirname)); // serves index.html, box.jpeg, etc.
+app.use(express.static(path.join(__dirname))); // Serve index.html & images
 
-// POST endpoint to save gift choice
+// Save choice
 app.post("/save-choice", (req, res) => {
   const { choice } = req.body;
   const log = `Choice: ${choice} | Time: ${new Date().toLocaleString()}\n`;
   fs.appendFileSync(path.join(__dirname, "choices.txt"), log);
-  console.log("✅ Saved choice:", choice);
+  console.log("Saved choice:", choice);
   res.sendStatus(200);
+});
+
+// Show choices
+app.get("/choices", (req, res) => {
+  const filename = path.join(__dirname, "choices.txt");
+  if (fs.existsSync(filename)) {
+    res.type("text/plain").send(fs.readFileSync(filename, "utf-8"));
+  } else {
+    res.send("No choices yet.");
+  }
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🎉 Server running at http://localhost:${PORT}`);
-  app.get("/choices", (req, res) => {
-    const file = path.join(__dirname, "choices.txt");
-    if (fs.existsSync(file)) {
-      const data = fs.readFileSync(file, "utf-8");
-      res.type("text/plain").send(data);
-    } else {
-      res.send("No choices yet.");
-    }
-  });
-  
+  console.log(`Server running on port ${PORT}`);
 });
 
