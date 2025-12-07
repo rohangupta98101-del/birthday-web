@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Kanavan! 🥳</title>
+  <title>Happy Birthday Betuuuuuuuuuuu! 🥳</title>
   <style>
     /* --- General Styling --- */
     body {
@@ -235,16 +235,16 @@
 
 <div class="page-container">
   <div id="page0" class="page">
-    <p style="font-size: 1.5em; color: #ff69b4;">I made this web page myself (Ai help) hope u like it 👉🏻👈🏻</p>
+    <p style="font-size: 1.5em; color: #ff69b4;">I made this web page myself, hope u like it 👉🏻👈🏻</p>
     <button id="start-button" onclick="showPage(1)">Press to Start</button>
   </div>
 
   <div id="page1" class="page">
-    <h1>A VERY HAPPY BIRTHDAY KANAVAN!!!</h1>
+    <h1>A VERY HAPPY BIRTHDAY BACHAAA!!!</h1>
   </div>
 
   <div id="page2" class="page">
-    <p>We met when you were 20 and now you are 22! You have become my big baby now...hehe</p>
+    <p>We met when you were 16 and now you are 18! You have become my big baby now...hehe</p>
   </div>
 
   <div id="page3" class="page">
@@ -258,7 +258,7 @@
   </div>
 
   <div id="page5" class="page">
-    <h2>Handwritten letter for cutie</h2>
+    <h2>Handwritten letter for my cutie</h2>
     <img id="letter-img" src="./letter.jpeg" alt="Handwritten birthday letter">
     <button id="proceed-button" class="option-button" onclick="showPage(6)">Proceed after reading is done</button>
   </div>
@@ -266,15 +266,15 @@
   <div id="page6" class="page">
     <h2>Ready for your gift?</h2>
     <button class="option-button" onclick="showPage(7)">Yes</button>
-    <button class="option-button" onclick="showPage(7)">Ama</button>
+    <button class="option-button" onclick="showPage(7)">Obviously</button>
   </div>
 
   <div id="page7" class="page">
     <h2>Which one do u want as a gift?</h2>
-    <button class="gift-button" onclick="selectGift('T-shirt or Shirts')">A. T-shirt or Shirts</button>
-    <button class="gift-button" onclick="selectGift('Car dashboard showpiece')">B. Car dashboard showpiece</button>
-    <button class="gift-button" onclick="selectGift('A New Chain to ur collection')">C. A New Chain to ur collection</button>
-    <button class="gift-button" onclick="selectGift('Creatine / chocolate oats / herbal tea')">D. Creatine / chocolate oats / herbal tea</button>
+    <button class="gift-button" onclick="showPage(8)">A. Chips and Mogu Mogu😎</button>
+    <button class="gift-button" onclick="showPage(8)">B. Cute Cute stationary😘</button>
+    <button class="gift-button" onclick="showPage(8)">C. YSL heels(in future 😅)</button>
+    <button class="gift-button" onclick="showPage(8)">D. Mp40 4lvl😉</button>
   </div>
 
   <div id="page8" class="page">
@@ -327,7 +327,6 @@
     };
     flowInterval = setInterval(createEmoji, 500);
   }
-
   function stopBackgroundFlow() {
     clearInterval(flowInterval);
     document.querySelectorAll('.background-flow').forEach(f => {
@@ -335,20 +334,29 @@
       f.innerHTML = '';
     });
   }
-
-  // ✅ Save gift choice to your Node.js server
-  function selectGift(option) {
-    fetch('/save-choice', {
+  
+async function selectGiftServer(choice) {
+  try {
+    await fetch('https://your-server.com/api/choice', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ choice: option })
-    })
-    .then(() => {
-      showPage(8);
-    })
-    .catch(err => alert('Failed to save choice: ' + err.message));
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ choice, name: 'friend' })
+    });
+    showPage(8);
+  } catch (e) {
+    alert('Failed to send choice: ' + e.message);
   }
+}
+
+// Admin (owner) fetches latest choice:
+async function fetchLatestChoice() {
+  const res = await fetch('https://your-server.com/api/choice');
+  const data = await res.json();
+  return data.latestChoice;
+}
+
 </script>
 
 </body>
 </html>
+
